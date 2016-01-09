@@ -9,6 +9,10 @@ The SMHasher suite also includes MurmurHash3, which is the latest version in the
 
 ## Updates
 
+### 1/8/2016
+
+Woo, we're on Github! I've been putting off the migration for a... uh... year or so, but hopefully Github won't be shutting down any time soon so I don't have to move things again. MurmurHash is still used all over the place, SMHasher is still the defacto hash function test suite, and there are all sorts of interesting new hash functions out there that improve bulk hashing speed and use new shiny hardware instructions for AES and whatnot. Interesting times. :)
+
 ### 5/10/2012
 
 A couple minor updates - 
