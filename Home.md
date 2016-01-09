@@ -1,17 +1,15 @@
-[SMHasher] is a test suite designed to test the distribution, collision, and performance properties of non-cryptographic hash functions.
+## [[SMHasher]] is a test suite designed to test the distribution, collision, and performance properties of non-cryptographic hash functions.
 
-= [SMHasher] & MurmurHash =
+This is the home for the [[MurmurHash]] family of hash functions along with the [[SMHasher]] test suite used to verify them. SMHasher is released under the MIT license. All MurmurHash versions are public domain software, and the author disclaims all copyright to their code.
 
-This webpage is the new home for the MurmurHash family of hash functions along with the SMHasher test suite used to verify them. SMHasher is released under the MIT license. All MurmurHash versions are public domain software, and the author disclaims all copyright to their code.
+SMHasher is a test suite designed to test the distribution, collision, and performance properties of non-cryptographic hash functions - it aims to be the [DieHarder](http://www.phy.duke.edu/~rgb/General/dieharder.php DieHarder) of hash testing, and does a pretty good job of finding flaws with a number of popular hashes.
 
-[SMHasher] is a test suite designed to test the distribution, collision, and performance properties of non-cryptographic hash functions - it aims to be the "[http://www.phy.duke.edu/~rgb/General/dieharder.php DieHarder]" of hash testing, and does a pretty good job of finding flaws with a number of popular hashes.
-
-The [SMHasher] suite also includes MurmurHash3, which is the latest version in the series of MurmurHash functions - the new version is faster, more robust, and its variants can produce 32- and 128-bit hash values efficiently on both x86 and x64 platforms.
+The SMHasher suite also includes MurmurHash3, which is the latest version in the series of MurmurHash functions - the new version is faster, more robust, and its variants can produce 32- and 128-bit hash values efficiently on both x86 and x64 platforms.
 
 
-== Updates ==
+## Updates
 
-=== 5/10/2012 ===
+### 5/10/2012
 
 A couple minor updates - 
 
@@ -22,22 +20,21 @@ A couple minor updates -
  - I'm clearing out bugs in the bug list, most of which have been there since I created this project. There are a few minor tweaks to SMHasher that'll get checked in shortly.
 
 
-=== 2/29/2012 ===
+### 2/29/2012
 
 I'd like to move the SMHasher repo to something Git-based - this could either be the built-in Git hosting on code.google.com, or an external site like Github.com. SMHasher isn't a particularly popular project, but if you're reading this and you have a preference one way or the other please let me know.
 
-=== 6/3/2011 ===
+### 6/3/2011
 
 A few users have asked if I'll be changing Murmur3 again, or if it's really really locked down now.
 
 So - yes - MurmurHash3 as of revision 136 is the final final version. Any future changes will be to improve performance only, any constant or algorithm changes will be reserved for MurmurHash4 if they're needed.
 
-
-=== 5/20/2011 ===
+### 5/20/2011
 
 Murmur3_x86_32 had a typo - the rotation constant in the tail mix was 16 where it should've been 15 to match the body. This is fixed in the latest changelist - hash quality should be unaffected, but the verification value has changed.
 
-=== 4/11/2011 ===
+### 4/11/2011
 
 Another batch of cross-platform fixes have gone in; code should hopefully compile correctly under clang-based frontends.
 
@@ -45,8 +42,7 @@ Murmur1/2/3.cpp/h will now compile standalone - copy/pasting them into your appl
 
 A few typos were found in murmur3 and have been fixed (one rotl value was wrong, a few "h ^= len" operations were missing) - verification values for self-test have been updated.
 
-
-=== 4/2/2011 ===
+### 4/2/2011
 
 MurmurHash3, all versions, is final.
 
@@ -69,7 +65,7 @@ All versions now have a strong finalization step. It turned out to be faster to 
 
 The dynamic mixing constants are gone. With the extra rotate added to the mix step they're no longer needed (the rotate does enough pattern-breaking), and they made implementing streaming versions of the hashes more difficult as they made the hash stateful.
 
-=== 4/1/2011 ===
+### 4/1/2011
 
 Darn it, I added a new test and it found a tiny flaw in Murmur3a even though I declared it final a few weeks ago.
 
@@ -81,8 +77,7 @@ I've reordered the operations a bit and tweaked the mixing constants to try and 
 
 For some reason Core i5 x86 performance of Murmur3a on the bulk speed test is still much lower (30%-ish) than Core 2 x86, even with the same compiler & optimizations. Murmur3f on Core i5 x64 is much faster than on Core 2 x64 though, hitting around 2.4 bytes per cycle.
 
-
-=== 3/20/2011 ===
+### 3/20/2011
 
 The codebase now compiles and runs using CMake under Visual Studio 20xx, Cygwin + GCC 4.3.4, MinGW, OSX, Ubuntu, and should hopefully do the same under other GCC variants. SMHasher also does a self-test on startup that verifies that all installed hash functions produce the same results as they do on the original (Visual Studio 2008) platform, so everything should be working correctly.
 
@@ -90,7 +85,7 @@ For safety's sake, I'll also be adding a verification value that'll show up at t
 
 Thanks to McKay Davis for providing his list of cross-platform fixes.
 
-=== 2/27/2011 ===
+### 2/27/2011
 
 Murmur3_x86_32 is finalized. It has received a few minor tweaks - one extra rotate in the mix step, some reordering to improve pipelining on x86 platforms, and one operation was removed from the finalization step.
 
@@ -100,7 +95,6 @@ I'm confident enough in this variant of Murmur3 now that I'm offering a small re
 
 (1) - because otherwise you could write code that runs Murmur3 backwards, in effect, and generate as many collisions as you want
 
-
 Other notes for the latest code - 
 
 - Murmur3_x86_64, Murmur3_x64_32, and Murmur3_x64_64 have been removed. If you're doing hash table lookup, use Murmur3_x86_32 - it works well on either platform and has much lower latency than x64_128. If you're generating unique IDs for blobs of data, you should be using at least a 128-bit hash.
@@ -109,15 +103,11 @@ Other notes for the latest code -
 
 - The sparse block tests now include an "all combinations of N blocks from a set of M" test, which is able to put a dent in Bob Jenkins' lookup3 (which had been unscathed until now)
 
-
-
-
-
-=== 1/13/2011 ===
+### 1/13/2011
 I'm now employed by Google, and will likely be spending a good chunk of my spare time improving [SMHasher]. The next tasks I'll be tackling will be to make the codebase compile and run cross-platform via CMake, and changing the tests to accept an arbitrarily-sized chunk of data as the "seed" parameter.
 
-=== 11/4/2010 ===
-[SMHasher] & MurmurHash3 are now in beta, and the source code for them can be checked out via subversion using the 'Source' tab above. I've copied the log for a test run of all MurmurHash3 variants to [SMHasherDump]
+### 11/4/2010
+SMHasher & MurmurHash3 are now in beta, and the source code for them can be checked out via subversion using the 'Source' tab above. I've copied the log for a test run of all MurmurHash3 variants to [SMHasherDump]
 
 MurmurHash3 is the successor to MurmurHash2 - it fixes a flaw that was found in MurmurHash2 and improves performance considerably - for 64-bit platforms, the improvement is quite dramatic. It contains variants that efficiently generate 32/64/128-bit hash values for both x86 and x64 platforms.
 
