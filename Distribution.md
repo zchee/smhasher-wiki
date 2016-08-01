@@ -1,6 +1,7 @@
-#summary Discussion of the "fill factor" metric used in evaluating hash value distributions.
+**Discussion of the "fill factor" metric used in evaluating hash value distributions.**
 
-= Introduction =
+Introduction
+============
 
 How do you determine how "good" a hash function is?
 
