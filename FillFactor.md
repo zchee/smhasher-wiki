@@ -1,6 +1,7 @@
-#summary Notes on the FillFactor metric used for evaluating hash value distributions
+**Notes on the FillFactor metric used for evaluating hash value distributions**
 
-= Introduction =
+Introduction
+============
 
 Once I've run a keyset through a hash function and used the hash values to create a hash table, how do I determine how "good" the table is?
 
@@ -16,9 +17,9 @@ The interpretation of M is roughly "The distribution we're testing is as efficie
 
 After working through the algebra, it turns out we can compute M fairly easily -
 
-{{{
+```
 double f = (k*k - 1) / (n*r*r - k);
 return 1 - (f / n);
-}}}
+```
 
-where 'k' is the number of keys in the hash table, 'n' is the number of buckets in the table, and 'r' is the root-mean-square value of the number of keys in each bucket.
+where `k` is the number of keys in the hash table, `n` is the number of buckets in the table, and `r` is the root-mean-square value of the number of keys in each bucket.
